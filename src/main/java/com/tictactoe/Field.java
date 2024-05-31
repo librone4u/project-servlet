@@ -31,7 +31,6 @@ public class Field {
                 .map(Map.Entry::getKey)
                 .findFirst().orElse(-1);
     }
-
     public List<Sign> getFieldData() {
         return field.entrySet().stream()
                 .sorted(Map.Entry.comparingByKey())

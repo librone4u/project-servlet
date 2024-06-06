@@ -46,12 +46,6 @@ public class LogicServlet extends HttpServlet {
                 session.setAttribute("queue", Sign.CROSS);
             }
         }
-//        if(emptyFieldIndex >=0) {
-//            field.getField().put(emptyFieldIndex, Sign.NOUGHT);
-//            if(checkWin(resp, session, field)){
-//                return;
-//            }
-//        }
         if(field.getEmptyFieldIndex() == -1){
             session.setAttribute("draw", true);
             List<Sign> data = field.getFieldData();
@@ -60,18 +54,15 @@ public class LogicServlet extends HttpServlet {
             resp.sendRedirect("/index.jsp");
             return;
         }
-
         List<Sign> data = field.getFieldData();
 
         session.setAttribute("data", data);
         session.setAttribute("field", field);
 
         resp.sendRedirect("/index.jsp");
-
     }
     private boolean checkWin(HttpServletResponse response, HttpSession session, Field field) throws IOException {
         Sign winner = field.checkWin();
-
         if(Sign.CROSS == winner || Sign.NOUGHT == winner) {
             session.setAttribute("winner", winner);
 
